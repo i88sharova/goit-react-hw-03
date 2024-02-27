@@ -20,11 +20,14 @@ export const App = () => {
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const onAddContact = (newContact) => {
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAddContact={onAddContact} />
       <SearchBox onSearch={handleSearch} />
       <ContactList contacts={filteredContacts} />
     </div>
