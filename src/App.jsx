@@ -20,16 +20,26 @@ export const App = () => {
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
   const onAddContact = (newContact) => {
     setContacts((prevContacts) => [...prevContacts, newContact]);
   };
 
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onAddContact={onAddContact} />
-      <SearchBox onSearch={handleSearch} />
-      <ContactList contacts={filteredContacts} />
-    </div>
-  );
+  const onDeleteContact = (id) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id)
+    );
+
+    return (
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm onAddContact={onAddContact} />
+        <SearchBox onSearch={handleSearch} />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={onDeleteContact}
+        />
+      </div>
+    );
+  };
 };

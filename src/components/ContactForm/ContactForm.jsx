@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { nanoid } from "nanoid";
 
 export const ContactForm = ({ onAddContact }) => {
   const formik = useFormik({
@@ -18,10 +19,10 @@ export const ContactForm = ({ onAddContact }) => {
         .required("This field is required"),
     }),
     onSubmit: (values, { resetForm }) => {
-      const id = nanoid();
+      //   const id = nanoid();
 
       const newContact = {
-        id,
+        id: nanoid(),
         name: values.name,
         number: values.number,
       };
